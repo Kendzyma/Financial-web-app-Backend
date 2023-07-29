@@ -2,9 +2,11 @@ server:
   port: 9001
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/rewardyourteacher_db
-    password: postgres
-    username: postgres
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    password: ${DB_PASSWORD}
+    username: ${DB_USERNAME}
+  config:
+    import: optional:file:.env[.properties]
   jpa:
     hibernate:
       ddl-auto: update
@@ -26,9 +28,9 @@ spring:
         registration:
           google:
             client-authentication-method: post
-            client-id: 497659411913-gvk3f86dpuhhb5o1jra0hscp795lcane.apps.googleusercontent.com
-            client-secret: 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
-            redirect-uri: https://localhost:9001/login/oauth2/code/google
+            client-id: ${CLIENT_ID}
+            client-secret: ${CLIENT_SECRET}
+            redirect-uri: ${REDIRECT_URL}
             scope:
               - email
               - profile
@@ -40,8 +42,8 @@ spring:
             enable: 'true'
           auth: 'true'
     host: smtp.gmail.com
-    username: TiamiyuKehinde5@gmail.com #<Login User to SMTP server>
-    password: ifuqujemeanhsvpr #<Login password to SMTP server>
+    username: ${GMAIL_USERNAME} #<Login User to SMTP server>
+    password: ${GMAIL_SMTP_PASSWORD} #<Login password to SMTP server>
     port: '587'
 springdoc:
   swagger-ui:
@@ -49,14 +51,14 @@ springdoc:
 
 jwt:
   adminKey:
-    passwordpasswordpasswordpasswordpasswordpasswordpasswordpassword
+    ${JWT_ADMIN_KEY}
 cloudinary_name:
   wingsmarket
 cloudinary_api_key:
-  834576764474828
+  ${CLOUDINARY_API_KEY}
 cloudinary_api_secret:
-  UissCDu2wcYRHKAdfJ2yuppCVyM
+  ${CLOUDINARY_API_SECRET}
 paystack_secret_key:
-  sk_test_20569b941fc404567b0eb805c313ab6c617fdd3d
+  ${PAYSTACK_SECRET_KEY}
 
 #  sk_test_4a9cc5c7ac230a48c417031a52010a676f5cd394
