@@ -10,6 +10,8 @@ services:
       - "5200:9001"
     env_file:
       - .env
+    networks:
+      - db_connection
 
 #Postgres db
   postgresqldb:
@@ -21,6 +23,8 @@ services:
       - .env
     volumes:
       - postgres:/data/postgres
+    networks:
+      - db_connection
 
 #pg admin app
   pgadmin:
@@ -33,10 +37,15 @@ services:
     ports:
       - "5050:80"
     restart: unless-stopped
+    networks:
+     - db_connection
 
 volumes:
   postgres:
   pgadmin:
+networks:
+  db_connection:
+    driver: bridge
 
 
 
